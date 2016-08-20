@@ -1,0 +1,18 @@
+//
+//  ChartsDemo-Prefix.pch
+//  ChartsDemo
+//
+//  Created by Rupam Mitra on 31/07/16.
+//  Copyright © 2016 Rupam Mitra. All rights reserved.
+//
+
+#ifndef ChartsDemo_Prefix_pch
+#define ChartsDemo_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+#import <Charts/Charts.h>
+#import "UIColor+Extras.h"
+#import "ChartsDemo-Swift.h"
+
+#endif /* ChartsDemo_Prefix_pch */
