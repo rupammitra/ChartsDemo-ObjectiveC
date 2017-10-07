@@ -66,7 +66,7 @@ open class Marker: MarkerImage {
         
         UIGraphicsPushContext(context);
         
-        labelns.draw(in: rect, withAttributes: [NSFontAttributeName: self.font, NSParagraphStyleAttributeName: _paragraphStyle, NSForegroundColorAttributeName: UIColor.white]);
+        labelns.draw(in: rect, withAttributes: [NSAttributedStringKey.font: self.font, NSAttributedStringKey.paragraphStyle: _paragraphStyle, NSAttributedStringKey.foregroundColor: UIColor.white]);
         
         UIGraphicsPopContext();
         
@@ -77,7 +77,7 @@ open class Marker: MarkerImage {
     {
         labelns = entry.data as! NSString;
         
-        _labelSize = labelns.size(attributes: [NSFontAttributeName: self.font]);
+        _labelSize = labelns.size(withAttributes: [NSAttributedStringKey.font: self.font]);
         _size.width = _labelSize.width + self.insets.left + self.insets.right;
         _size.height = _labelSize.height + self.insets.top + self.insets.bottom;
         _size.width = max(minimumSize.width, _size.width);
