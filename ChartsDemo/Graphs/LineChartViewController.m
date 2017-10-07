@@ -7,6 +7,7 @@
 //
 
 #import "LineChartViewController.h"
+#import "XAxisFormatter.h"
 
 @interface LineChartViewController ()
 
@@ -38,6 +39,9 @@
         [xVals addObject:obj[@"x"]];
     }];
     
+    ChartXAxis *xAxis = [self.chartView xAxis];
+    [xAxis setValueFormatter:[[XAxisFormatter alloc] initWithXVals:xVals]];
+    
     __block NSMutableArray *dataSets = [NSMutableArray new];
     __block NSMutableArray *yVals;
     __block LineChartDataSet *dataSet;
@@ -51,8 +55,8 @@
             UIColor *color = [UIColor randomColor];
             [self.dataArray enumerateObjectsUsingBlock:^(id  _Nonnull data, NSUInteger dataIndex, BOOL * _Nonnull stop) {
                 NSString *markerString = [NSString stringWithFormat:@" %@: %@", [key uppercaseString], data[key]];
-                [yVals addObject:[[ChartDataEntry alloc] initWithValue:[data[key] doubleValue] xIndex:dataIndex data:markerString]];
-                dataSet = [[LineChartDataSet alloc] initWithYVals:yVals label:[key uppercaseString]];
+                [yVals addObject:[[ChartDataEntry alloc] initWithX:dataIndex y:[data[key] doubleValue] data:markerString]];
+                dataSet = [[LineChartDataSet alloc] initWithValues:yVals label:[key uppercaseString]];
                 [dataSet setColor:color];
                 [dataSet setLineWidth:2.0];
                 if (self.lineFillEnabled) {
@@ -67,7 +71,7 @@
         }
     }];
     
-    LineChartData *data = [[LineChartData alloc] initWithXVals:xVals dataSets:dataSets];
+    LineChartData *data = [[LineChartData alloc] initWithDataSets:dataSets];
     [data setDrawValues:NO];
     
     self.chartView.data = data;

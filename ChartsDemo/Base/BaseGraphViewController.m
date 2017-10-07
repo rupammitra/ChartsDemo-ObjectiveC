@@ -7,6 +7,7 @@
 //
 
 #import "BaseGraphViewController.h"
+#import "LeftAxisFormatter.h"
 
 @interface BaseGraphViewController ()
 
@@ -44,10 +45,9 @@
     ChartYAxis *leftAxis =[_chartView leftAxis];
     [leftAxis setLabelFont:[UIFont systemFontOfSize:15.0]];
     [leftAxis setLabelTextColor:[UIColor randomColor]];
-    
-    [leftAxis.valueFormatter setMaximumFractionDigits:2];
+    [leftAxis setValueFormatter:[[ChartDefaultAxisValueFormatter alloc] initWithFormatter:[LeftAxisFormatter new]]];
     [leftAxis setDrawGridLinesEnabled:YES];
-    [leftAxis setStartAtZeroEnabled:YES];
+    [leftAxis setAxisMinimum:0.0];
     
     ChartYAxis *rightAxis = [_chartView rightAxis];
     [rightAxis setEnabled:NO];
@@ -57,6 +57,7 @@
     [xAxis setLabelTextColor:[UIColor randomColor]];
     [xAxis setLabelPosition:XAxisLabelPositionBottom];
     [xAxis setDrawGridLinesEnabled:YES];
+    [xAxis setGranularity:1.0];
     
     ChartLegend *legend = [_chartView legend];
     [legend setEnabled:YES];
