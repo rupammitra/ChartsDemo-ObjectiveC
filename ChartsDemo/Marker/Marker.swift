@@ -15,14 +15,14 @@ open class Marker: MarkerImage {
     open var arrowSize = CGSize(width: 15, height: 11);
     open var font: UIFont!;
     open var insets = UIEdgeInsets();
-    open var minimumSize = CGSize();
+    @objc open var minimumSize = CGSize();
     
     fileprivate var labelns: NSString!;
     fileprivate var _labelSize: CGSize = CGSize();
     fileprivate var _size: CGSize = CGSize();
     fileprivate var _paragraphStyle: NSMutableParagraphStyle!;
     
-    public init(color: UIColor, font: UIFont, insets: UIEdgeInsets)
+    @objc public init(color: UIColor, font: UIFont, insets: UIEdgeInsets)
     {
         super.init();
         
